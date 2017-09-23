@@ -1,0 +1,23 @@
+#config
+morebats.config.title=M'Ore Bats Config
+
+#creativetab
+itemGroup.morebats=M'Ore Bats
+
+#blocks
+tile.guano_block.name=Guano
+
+#items
+item.guano_projectile.name=Guano
+
+item.gold_chunk.name=Gold Chunk
+item.iron_chunk.name=Iron Chunk
+item.lapis_chunk.name=Lapis Chunk
+item.diamond_chunk.name=Diamond Chunk
+item.redstone_chunk.name=Redstone Chunk
+item.emerald_chunk.name=Emerald Chunk
+item.quartz_chunk.name=Quartz Chunk
+item.coal_chunk.name=Coal Chunk
+
+#entities
+entity.morebats:OreBat.name=Ore Bat
