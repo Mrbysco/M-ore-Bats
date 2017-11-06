@@ -25,13 +25,14 @@ public class BatLayer implements LayerRenderer<EntityOreBat>
 		if (BAT_OVERLAY != null)
 		{
 			this.renderer.bindTexture(BAT_OVERLAY);
-			GlStateManager.disableBlend();
-	        GlStateManager.enableAlpha();
-	        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE);
+            GlStateManager.enableBlend();
+
+	        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
 	        
 	        Color color = entitylivingbaseIn.overlayColor();
 	        GlStateManager.color((float)color.getRed()/255F, (float)color.getGreen()/255F, (float)color.getBlue()/255F, 0.8F);
-	        
+            GlStateManager.disableBlend();
+
 	        this.renderer.getMainModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale); 
 		}
 		
