@@ -20,16 +20,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityGuanoProjectile extends EntityThrowable
 {
+	private int density;
+	
 	public EntityGuanoProjectile(World worldIn)
     {
         super(worldIn);
     }
 
-    public EntityGuanoProjectile(World worldIn, EntityLivingBase throwerIn)
+    public EntityGuanoProjectile(World worldIn, EntityLivingBase throwerIn, int DENSITY)
     {
         super(worldIn, throwerIn);
+        this.density = DENSITY;
     }
-
+	
     public EntityGuanoProjectile(World worldIn, double x, double y, double z)
     {
         super(worldIn, x, y, z);
@@ -132,8 +135,23 @@ public class EntityGuanoProjectile extends EntityThrowable
     }
     
     private void dostuff(BlockPos pos) {
-    	world.setBlockState(pos, MOreBlocks.guano.getDefaultState());
-		this.world.setEntityState(this, (byte)3);
+    	if (this.density == 1)
+    	{
+    		world.setBlockState(pos, MOreBlocks.guano.getDefaultState());
+    	}
+    	if (this.density == 2)
+    	{
+    		world.setBlockState(pos, MOreBlocks.guano2.getDefaultState());
+    	}
+    	if (this.density == 3)
+    	{
+    		world.setBlockState(pos, MOreBlocks.guano3.getDefaultState());
+    	}
+    	if (this.density == 4)
+    	{
+    		world.setBlockState(pos, MOreBlocks.guano4.getDefaultState());
+    	}
+    	this.world.setEntityState(this, (byte)3);
         this.setDead();
     }
 }

@@ -13,6 +13,7 @@ public class RenderOreBat extends RenderBat{
 	
 	public RenderOreBat(RenderManager renderManagerIn) {
 		super(renderManagerIn);
+		this.addLayer(new BatLayer(this));
 	}
 	
 	public static class Factory implements IRenderFactory<EntityOreBat> {

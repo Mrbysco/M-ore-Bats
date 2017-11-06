@@ -1,0 +1,117 @@
+{
+	"__comment": "Designed by Mrbysco",
+	"textures": {
+		"particle": "morebats:blocks/guano",
+		"texture": "morebats:blocks/guano"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Guano1",
+			"from": [ 6.5, 0, 8.5 ],
+			"to": [ 10, 1, 9 ],
+			"faces": {
+				"down": { "uv": [ 6.5, 7, 10, 7.5 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 6.5, 8.5, 10, 9 ], "texture": "#texture" },
+				"north": { "uv": [ 6, 15, 9.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 6.5, 15, 10, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 8.5, 15, 9, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 7, 15, 7.5, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Guano2",
+			"from": [ 7, 0, 7 ],
+			"to": [ 10.5, 1, 7.5 ],
+			"faces": {
+				"down": { "uv": [ 5.5, 6.5, 10, 7.5 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 5.5, 8.5, 10, 9.5 ], "texture": "#texture" },
+				"north": { "uv": [ 6, 15, 10.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 5.5, 15, 10, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 8.5, 15, 9.5, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 6.5, 15, 7.5, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Guano3",
+			"from": [ 6.625, 1, 7.5 ],
+			"to": [ 10.625, 1.5, 8.5 ],
+			"faces": {
+				"down": { "uv": [ 6.5, 7.5, 11, 8.5 ], "texture": "#texture" },
+				"up": { "uv": [ 6.5, 7.5, 11, 8.5 ], "texture": "#texture" },
+				"north": { "uv": [ 5, 15, 9.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 6.5, 15, 11, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 7.5, 15, 8.5, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 7.5, 15, 8.5, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Guano",
+			"from": [ 6, 0, 7.5 ],
+			"to": [ 11, 1, 8.5 ],
+			"faces": {
+				"down": { "uv": [ 5.5, 6.5, 10, 7.5 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 5.5, 8.5, 10, 9.5 ], "texture": "#texture" },
+				"north": { "uv": [ 6, 15, 10.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 5.5, 15, 10, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 8.5, 15, 9.5, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 6.5, 15, 7.5, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Guano",
+			"from": [ 7, 0, 6 ],
+			"to": [ 12, 1, 7 ],
+			"rotation": { "origin": [ 7, 0, 6 ], "axis": "y", "angle": -45 },
+			"faces": {
+				"down": { "uv": [ 5.5, 6.5, 10, 7.5 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 5.5, 8.5, 10, 9.5 ], "texture": "#texture" },
+				"north": { "uv": [ 6, 15, 10.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 5.5, 15, 10, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 8.5, 15, 9.5, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 6.5, 15, 7.5, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Guano1",
+			"from": [ 7.5, 0, 7 ],
+			"to": [ 11, 1, 7.5 ],
+			"rotation": { "origin": [ 7, 0, 6 ], "axis": "y", "angle": -45 },
+			"faces": {
+				"down": { "uv": [ 6.5, 7, 10, 7.5 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 6.5, 8.5, 10, 9 ], "texture": "#texture" },
+				"north": { "uv": [ 6, 15, 9.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 6.5, 15, 10, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 8.5, 15, 9, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 7, 15, 7.5, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Guano2",
+			"from": [ 8, 0, 5.5 ],
+			"to": [ 11.5, 1, 6 ],
+			"rotation": { "origin": [ 7, 0, 6 ], "axis": "y", "angle": -45 },
+			"faces": {
+				"down": { "uv": [ 5.5, 6.5, 10, 7.5 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 5.5, 8.5, 10, 9.5 ], "texture": "#texture" },
+				"north": { "uv": [ 6, 15, 10.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 5.5, 15, 10, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 8.5, 15, 9.5, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 6.5, 15, 7.5, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Guano3",
+			"from": [ 7.625, 1, 6 ],
+			"to": [ 11.625, 1.5, 7 ],
+			"rotation": { "origin": [ 7, 0, 6 ], "axis": "y", "angle": -45 },
+			"faces": {
+				"down": { "uv": [ 6.5, 7.5, 11, 8.5 ], "texture": "#texture" },
+				"up": { "uv": [ 6.5, 7.5, 11, 8.5 ], "texture": "#texture" },
+				"north": { "uv": [ 5, 15, 9.5, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 6.5, 15, 11, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 7.5, 15, 8.5, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 7.5, 15, 8.5, 16 ], "texture": "#texture" }
+			}
+		}
+	]
+}

@@ -18,5 +18,4 @@ public class OreDict {
 	{
 		return OreDictionary.getOres(orename).get(0);
 	}
-	
 }

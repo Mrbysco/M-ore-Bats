@@ -16,8 +16,11 @@ public class MOreBatsConfigGen {
 	@Config.Comment({"General settings"})
 	public static General general = new General();
 	
-	@Config.Comment({"General settings"})
+	@Config.Comment({"Ore settings"})
 	public static Ores ores = new Ores();
+	
+	@Config.Comment({"Mod ore settings"})
+	public static ModOres modores = new ModOres();
 	
 	public static class General{
 		public int guanochance = 10;
@@ -37,16 +40,45 @@ public class MOreBatsConfigGen {
 		public boolean diamondOre = OreDict.OreExists("oreDiamond");
 		
 		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
-		public boolean RedstoneOre = OreDict.OreExists("oreRedstone");
+		public boolean redstoneOre = OreDict.OreExists("oreRedstone");
 		
 		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
-		public boolean EmeraldOre = OreDict.OreExists("oreEmerald");
+		public boolean emeraldOre = OreDict.OreExists("oreEmerald");
 		
 		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
 		public boolean quartzOre = OreDict.OreExists("oreQuartz");
 		
 		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
 		public boolean coalOre = OreDict.OreExists("oreCoal");
+	}
+	
+	public static class ModOres{
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean tinOre = OreDict.OreExists("oreTin");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean copperOre = OreDict.OreExists("oreCopper");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean silverOre = OreDict.OreExists("oreSilver");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean leadOre = OreDict.OreExists("oreLead");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean aluminumOre = OreDict.OreExists("oreAluminum");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean nickelOre = OreDict.OreExists("oreNickel");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean platinumOre = OreDict.OreExists("orePlatinum");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean iridiumOre = OreDict.OreExists("oreIridium");
+		
+		@Config.Comment("Setting this to false removes the specified Ore from being given by a bat.")
+		public boolean mithrilOre = OreDict.OreExists("oreMithril");
 	}
 	
 	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)

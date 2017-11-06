@@ -1,5 +1,5 @@
 {
-	"parent": "morebats:block/guano_block",
+	"parent": "morebats:block/guano_block3",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation":  [ 59, 0, 0 ],

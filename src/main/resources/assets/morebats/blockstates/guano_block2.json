@@ -1,0 +1,6 @@
+{
+    "variants": {
+	"explode=true": { "model":"morebats:guano_block2" },
+	"explode=false": { "model":"morebats:guano_block2" }
+    }
+}

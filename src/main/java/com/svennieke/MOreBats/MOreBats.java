@@ -27,7 +27,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Reference.MOD_ID, 
 	name = Reference.MOD_NAME, 
 	version = Reference.VERSION, 
-	acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
+	acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS,
+	dependencies = Reference.DEPENDENCIES)
 
 public class MOreBats {
 	@Instance(Reference.MOD_ID)

@@ -5,10 +5,16 @@ morebats.config.title=M'Ore Bats Config
 itemGroup.morebats=M'Ore Bats
 
 #blocks
-tile.guano_block.name=Guano
+tile.guano_block.name=Tiny Pile Of Guano
+tile.guano_block2.name=Pile Of Guano
+tile.guano_block3.name=Big Pile Of Guano
+tile.guano_block4.name=Giant Pile Of Guano
 
 #items
-item.guano_projectile.name=Guano
+item.guano_projectile.name=Tiny Pile Of Guano
+item.guano_projectile2.name=Pile Of Guano
+item.guano_projectile3.name=Big Pile Of Guano
+item.guano_projectile4.name=Giant Pile Of Guano
 
 item.gold_chunk.name=Gold Chunk
 item.iron_chunk.name=Iron Chunk
