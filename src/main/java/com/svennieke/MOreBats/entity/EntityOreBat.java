@@ -8,16 +8,18 @@ import com.svennieke.MOreBats.util.OreList;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class EntityOreBat extends EntityBat{
-		
+	
+	private static final DataParameter<String> ORE_NAME = EntityDataManager.<String>createKey(EntityOreBat.class, DataSerializers.STRING);
 	public static String ENTITY_NAME = "EntityOreBat";
 	public static final String NBT_ORE_NAME = "OreName";
-	private String ORE_NAME = "";
+	//private String ORE_NAME = "";
 	
 	public EntityOreBat(World worldIn) {
 		super(worldIn);
@@ -26,6 +28,7 @@ public class EntityOreBat extends EntityBat{
 	@Override
 	protected void entityInit() {
 		super.entityInit();
+		this.dataManager.register(ORE_NAME, String.valueOf(""));
 	}
 	
 	@Override
@@ -42,7 +45,7 @@ public class EntityOreBat extends EntityBat{
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-		this.ORE_NAME = compound.getString(NBT_ORE_NAME);
+		this.dataManager.set(ORE_NAME, compound.getString(NBT_ORE_NAME));
 	}
 	
 	@Override
@@ -80,12 +83,15 @@ public class EntityOreBat extends EntityBat{
 	
 	public String getOre()
 	{
-		return this.ORE_NAME;
+		if (this.dataManager.get(ORE_NAME) == null || this.dataManager.get(ORE_NAME).isEmpty())
+			return null;
+		
+		return this.dataManager.get(ORE_NAME);
 	}
 	
 	public void setOre(String oreName)
 	{
-		this.ORE_NAME = oreName;
+		this.dataManager.set(ORE_NAME, oreName);
 	}
 	
 	public Color overlayColor()
