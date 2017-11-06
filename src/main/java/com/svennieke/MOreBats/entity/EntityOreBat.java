@@ -10,12 +10,14 @@ import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class EntityOreBat extends EntityBat{
 		
 	public static String ENTITY_NAME = "EntityOreBat";
 	public static final String NBT_ORE_NAME = "OreName";
-	public String ORE_NAME = "";
+	private String ORE_NAME = "";
 	
 	public EntityOreBat(World worldIn) {
 		super(worldIn);
@@ -40,25 +42,25 @@ public class EntityOreBat extends EntityBat{
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-		
-		String oreName = compound.getString(NBT_ORE_NAME);
-				
-		if (!(oreName == null))
-		setOre(OreList.getRandomOre());
+		this.ORE_NAME = compound.getString(NBT_ORE_NAME);
 	}
 	
 	@Override
-	public void onUpdate() {
-		super.onUpdate();
-		System.out.println(getOre());
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		if(!world.isRemote)
+		{
+			//DEBUG
+			//System.out.println(getOre());
+		}
 	}
 	
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) 
 	{
 		IEntityLivingData entityData = super.onInitialSpawn(difficulty, livingdata);
-		
-		if (!world.isRemote)
+
+		if(!world.isRemote)
 		{
 			configureOre();
 		}
@@ -78,15 +80,7 @@ public class EntityOreBat extends EntityBat{
 	
 	public String getOre()
 	{
-		String name = "";
-		if (this.ORE_NAME != null)
-		{
-			return this.ORE_NAME;
-		}
-		else
-		{
-			return name;
-		}
+		return this.ORE_NAME;
 	}
 	
 	public void setOre(String oreName)
@@ -96,11 +90,6 @@ public class EntityOreBat extends EntityBat{
 	
 	public Color overlayColor()
 	{
-		if(this.ORE_NAME == null)
-		{
-			return null;
-		}
-		else
-		return OreColors.getColor(this.ORE_NAME);
+		return OreColors.getColor(getOre());
 	}
 }
