@@ -1,10 +1,9 @@
 package com.svennieke.MOreBats.entities.entity;
 
-import com.svennieke.MOreBats.entities.tileentity.GuanoTileEntity;
-import com.svennieke.MOreBats.init.MOreBlocks;
+import com.svennieke.MOreBats.block.BlockGuano;
+import com.svennieke.MOreBats.util.OreList;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +11,6 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityGuanoProjectile extends EntityThrowable
 {
 	private int density;
-	private String ore;
+	private String oreName;
 	
 	public EntityGuanoProjectile(World worldIn)
     {
@@ -35,7 +33,7 @@ public class EntityGuanoProjectile extends EntityThrowable
     {
         super(worldIn, throwerIn);
         this.density = densityIn;
-        this.ore = oreName;
+        this.oreName = oreName;
     }
 	
     public EntityGuanoProjectile(World worldIn, double x, double y, double z)
@@ -80,12 +78,10 @@ public class EntityGuanoProjectile extends EntityThrowable
             		hitPlayer.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 12 * 20, 0, true, true));
             		hitPlayer.addPotionEffect(new PotionEffect(MobEffects.POISON, 10 * 20, 0, true, true));
             		dostuff(this.getPosition());
-        			setInfo(this.getPosition());
         		}
         		else
         		{
         			dostuff(this.getPosition());
-        			setInfo(this.getPosition());
         		}
         	}
         		
@@ -97,10 +93,9 @@ public class EntityGuanoProjectile extends EntityThrowable
         		Block block = world.getBlockState(pos).getBlock();
         		boolean flag1 = (block == Blocks.AIR || block == Blocks.TALLGRASS);
         		
-        		if(flag1 && !(block == MOreBlocks.guano))
+        		if(flag1 && !(block == OreList.getBlockFromName(this.oreName)))
         		{
         			dostuff(pos);
-        			setInfo(pos);
         		}
         		else if(block == Blocks.LAVA)
         		{
@@ -118,39 +113,25 @@ public class EntityGuanoProjectile extends EntityThrowable
     }
     
     private void dostuff(BlockPos pos) {
+    	BlockGuano guano = OreList.getBlockFromName(this.oreName);
+    	
     	switch(this.density)
     	{
+	    	case 0:
+	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(0)));
+	    		break;
 	    	case 1:
-	    		world.setBlockState(pos, MOreBlocks.guano.getDefaultState());
+	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(1)));
 	    		break;
 	    	case 2:
-	    		world.setBlockState(pos, MOreBlocks.guano2.getDefaultState());
+	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(2)));
 	    		break;
 	    	case 3:
-	    		world.setBlockState(pos, MOreBlocks.guano3.getDefaultState());
-	    		break;
-	    	case 4:
-	    		world.setBlockState(pos, MOreBlocks.guano4.getDefaultState());
+	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(3)));
 	    		break;
     	}
     	
     	this.world.setEntityState(this, (byte)3);
         this.setDead();
-    }
-    
-    private void setInfo(BlockPos pos) {
-    	TileEntity te = world.getTileEntity(pos);
-    	if (te instanceof GuanoTileEntity)
-    	{
-    		GuanoTileEntity tile = (GuanoTileEntity)te;
-        	if (tile != null) 
-    		{	
-        		tile.setDensity(this.density);
-        		tile.setOre(this.ore);
-            	final IBlockState state = world.getBlockState(pos);
-            	world.notifyBlockUpdate(pos, state, state, 3);
-        		System.out.println(tile.getOre());
-    		}
-    	}
     }
 }

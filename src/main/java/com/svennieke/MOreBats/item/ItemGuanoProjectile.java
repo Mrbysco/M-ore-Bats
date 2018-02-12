@@ -62,13 +62,23 @@ public class ItemGuanoProjectile extends Item
         {
         	EntityGuanoProjectile projectile;
         	
+        	NBTTagCompound nbt;
+            if (itemstack.hasTagCompound())
+            {
+                nbt = itemstack.getTagCompound();
+            }
+            else
+            {
+                nbt = new NBTTagCompound();
+            }
+            
         	if (itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey("Ore"))
         	{
-        		projectile = new EntityGuanoProjectile(worldIn, playerIn, this.density, itemstack.getTagCompound().getString("Ore"));
+        		projectile = new EntityGuanoProjectile(worldIn, playerIn, this.density - 1, itemstack.getTagCompound().getString("Ore"));
         	}
         	else
         	{
-        		projectile = new EntityGuanoProjectile(worldIn, playerIn, this.density, "oreCoal");
+        		projectile = new EntityGuanoProjectile(worldIn, playerIn, this.density - 1, "oreCoal");
         	}
         	
             projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);

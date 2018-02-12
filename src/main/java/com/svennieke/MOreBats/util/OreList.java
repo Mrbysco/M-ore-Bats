@@ -5,7 +5,9 @@ import java.util.Random;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import com.svennieke.MOreBats.block.BlockGuano;
 import com.svennieke.MOreBats.config.MOreBatsConfigGen;
+import com.svennieke.MOreBats.init.MOreBlocks;
 import com.svennieke.MOreBats.init.MOreItems;
 
 import net.minecraft.item.Item;
@@ -59,23 +61,71 @@ public static final Random rand = new Random();
     	//basic oreItem
     	Item oreItem = MOreItems.coal_chunk;
     	
-    	if (ore.equals("oreGold"))
+    	if (ore.contains("gold"))
     		oreItem = MOreItems.gold_chunk;
-    	if (ore.equals("oreIron"))
+    	if (ore.contains("iron"))
     		oreItem = MOreItems.iron_chunk;
-    	if (ore.equals("oreLapis"))
+    	if (ore.contains("lapis"))
     		oreItem = MOreItems.lapis_chunk;
-    	if (ore.equals("oreDiamond"))
+    	if (ore.contains("diamond"))
     		oreItem = MOreItems.diamond_chunk;
-    	if (ore.equals("oreRedstone"))
+    	if (ore.contains("redstone"))
     		oreItem = MOreItems.redstone_chunk;
-    	if (ore.equals("oreEmerald"))
+    	if (ore.contains("emerald"))
     		oreItem = MOreItems.emerald_chunk;
-    	if (ore.equals("oreQuartz"))
+    	if (ore.contains("quartz"))
     		oreItem = MOreItems.quartz_chunk;
-    	if (ore.equals("oreCoal"))
+    	if (ore.contains("coal"))
     		oreItem = MOreItems.coal_chunk;
     	
 		return oreItem;
+    }
+    
+    public static BlockGuano getBlockFromName(String blockName)
+    {
+    	BlockGuano guanoBlock = MOreBlocks.coal_guano;
+    	
+    	if (blockName.contains("Gold"))
+    		guanoBlock = MOreBlocks.gold_guano;
+    	if (blockName.contains("Iron"))
+    		guanoBlock = MOreBlocks.iron_guano;
+    	if (blockName.contains("Lapis"))
+    		guanoBlock = MOreBlocks.lapis_guano;
+    	if (blockName.contains("Diamond"))
+    		guanoBlock = MOreBlocks.diamond_guano;
+    	if (blockName.contains("Redstone"))
+    		guanoBlock = MOreBlocks.redstone_guano;
+    	if (blockName.contains("Emerald"))
+    		guanoBlock = MOreBlocks.emerald_guano;
+    	if (blockName.contains("Quartz"))
+    		guanoBlock = MOreBlocks.quartz_guano;
+    	if (blockName.contains("Coal"))
+    		guanoBlock = MOreBlocks.coal_guano;
+    	
+    	return guanoBlock;
+    }
+    
+    public static String convertBlockName(String blockName)
+    {
+    	String oreName = "oreCoal";
+    	
+    	if (blockName.contains("gold"))
+    		oreName = "oreGold";
+    	if (blockName.contains("iron"))
+    		oreName = "oreIron";
+    	if (blockName.contains("lapis"))
+    		oreName = "oreLapis";
+    	if (blockName.contains("diamond"))
+    		oreName = "oreDiamond";
+    	if (blockName.contains("redstone"))
+    		oreName = "oreRedstone";
+    	if (blockName.contains("emerald"))
+    		oreName = "oreEmerald";
+    	if (blockName.contains("quartz"))
+    		oreName = "oreQuartz";
+    	if (blockName.contains("coal"))
+    		oreName = "oreCoal";
+    	
+    	return oreName;
     }
 }

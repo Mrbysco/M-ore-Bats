@@ -3,6 +3,7 @@ package com.svennieke.MOreBats.init;
 import java.util.ArrayList;
 
 import com.svennieke.MOreBats.block.BlockGuano;
+import com.svennieke.MOreBats.config.MOreBatsConfigGen;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -13,8 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @EventBusSubscriber
 public class MOreBlocks {
-	public static Block guano, guano2, guano3, guano4;
-	public static Block washer, washer_running;
+	public static BlockGuano gold_guano, iron_guano, lapis_guano, diamond_guano, redstone_guano, emerald_guano, quartz_guano, coal_guano;
 	
 	public static ArrayList<Block> BLOCKS = new ArrayList<>();
 	
@@ -22,11 +22,47 @@ public class MOreBlocks {
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
 		IForgeRegistry<Block> registry = event.getRegistry();
+
+		//Registering ore guano if ores exist
+		if(MOreBatsConfigGen.ores.goldOre)
+		{
+			gold_guano = registerBlock(new BlockGuano("gold_guano"));
+		}
 		
-		guano = registerBlock(new BlockGuano("guano_block", 1));
-		guano2 = registerBlock(new BlockGuano("guano_block2", 2));
-		guano3 = registerBlock(new BlockGuano("guano_block3", 3));
-		guano4 = registerBlock(new BlockGuano("guano_block4", 4));
+		if(MOreBatsConfigGen.ores.ironOre)
+		{
+			iron_guano = registerBlock(new BlockGuano("iron_guano"));
+		}
+		
+		if(MOreBatsConfigGen.ores.lapisOre)
+		{
+			lapis_guano = registerBlock(new BlockGuano("lapis_guano"));
+		}
+		
+		if(MOreBatsConfigGen.ores.diamondOre)
+		{
+			diamond_guano = registerBlock(new BlockGuano("diamond_guano"));
+		}
+		
+		if(MOreBatsConfigGen.ores.redstoneOre)
+		{
+			redstone_guano = registerBlock(new BlockGuano("redstone_guano"));
+		}
+		
+		if(MOreBatsConfigGen.ores.emeraldOre)
+		{
+			emerald_guano = registerBlock(new BlockGuano("emerald_guano"));
+		}
+		
+		if(MOreBatsConfigGen.ores.quartzOre)
+		{
+			quartz_guano = registerBlock(new BlockGuano("quartz_guano"));
+		}
+		
+		if(MOreBatsConfigGen.ores.coalOre)
+		{
+			coal_guano = registerBlock(new BlockGuano("coal_guano"));
+		}
 		
 		registry.registerAll(BLOCKS.toArray(new Block[0]));
     }

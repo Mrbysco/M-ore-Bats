@@ -4,7 +4,6 @@ import com.svennieke.MOreBats.MOreBats;
 import com.svennieke.MOreBats.Reference;
 import com.svennieke.MOreBats.entities.entity.EntityGuanoProjectile;
 import com.svennieke.MOreBats.entities.entity.EntityOreBat;
-import com.svennieke.MOreBats.entities.tileentity.GuanoTileEntity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -20,8 +19,6 @@ public class MOreEntities {
 		MOreBats.logger.debug("Registering Ore Bat");
 		registerEntity("ore_bat", EntityOreBat.class, "OreBat", 80, 3, true, 3421236, 3556687);
 		registerEntity("guano", EntityGuanoProjectile.class, "Guano", 80, 3, true);
-		
-		registerTileEntity(GuanoTileEntity.class, "_tileentity");
 	}
 	
 	public static void registerEntity(String registryName, Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
