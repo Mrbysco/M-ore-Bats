@@ -59,7 +59,7 @@ public class EntityGuanoProjectile extends EntityThrowable
             }
         }
     }
-
+    
     protected void onImpact(RayTraceResult result)
     {
         if (!this.world.isRemote)
@@ -68,11 +68,7 @@ public class EntityGuanoProjectile extends EntityThrowable
         	int y = (int) this.posY;
         	int z = (int) this.posZ;
         	
-        	BlockPos pos1 = this.getPosition();
-        	BlockPos pos2 = new BlockPos(x+1,y,z);
-        	BlockPos pos3 = new BlockPos(x-1,y,z);
-        	BlockPos pos4 = new BlockPos(x,y,z+1);
-        	BlockPos pos5 = new BlockPos(x,y,z-1);
+        	BlockPos pos = this.getPosition();
         	
         	if(result.typeOfHit !=null && result.typeOfHit == RayTraceResult.Type.ENTITY)
         	{
@@ -98,47 +94,15 @@ public class EntityGuanoProjectile extends EntityThrowable
         		
         		//BlockPos position = new BlockPos(this.posX, this.posY, this.posZ);
         		BlockPos position = this.getPosition();
-        		
-        		Block block = world.getBlockState(pos1).getBlock();
-        		Block block2 = world.getBlockState(pos2).getBlock();
-        		Block block3 = world.getBlockState(pos3).getBlock();
-        		Block block4 = world.getBlockState(pos4).getBlock();
-        		Block block5 = world.getBlockState(pos5).getBlock();
-
+        		Block block = world.getBlockState(pos).getBlock();
         		boolean flag1 = (block == Blocks.AIR || block == Blocks.TALLGRASS);
-        		boolean flag2 = (block2 == Blocks.AIR || block2 == Blocks.TALLGRASS);
-        		boolean flag3 = (block3 == Blocks.AIR || block3 == Blocks.TALLGRASS);
-        		boolean flag4 = (block4 == Blocks.AIR || block4 == Blocks.TALLGRASS);
-        		boolean flag5 = (block5 == Blocks.AIR || block5 == Blocks.TALLGRASS);
-        		
         		
         		if(flag1 && !(block == MOreBlocks.guano))
         		{
-        			dostuff(pos1);
-        			setInfo(pos1);
+        			dostuff(pos);
+        			setInfo(pos);
         		}
-        		else if(flag2 && !(block2 == MOreBlocks.guano))
-        		{
-        			dostuff(pos2);
-        			setInfo(pos2);
-        		}
-        		else if(flag3 && !(block3 == MOreBlocks.guano))
-        		{
-        			dostuff(pos3);
-        			setInfo(pos3);
-        		}
-        		else if(flag4 && !(block4 == MOreBlocks.guano))
-        		{
-        			dostuff(pos4);
-        			setInfo(pos4);
-        		}
-        		else if(flag5 && !(block5 == MOreBlocks.guano))
-        		{
-        			dostuff(pos5);
-        			setInfo(pos5);
-        		}
-        		
-        		else if(block == Blocks.LAVA || block2 == Blocks.LAVA | block3 == Blocks.LAVA | block4 == Blocks.LAVA | block5 == Blocks.LAVA )
+        		else if(block == Blocks.LAVA)
         		{
         			world.createExplosion(this, this.posX, this.posY, this.posZ, 1f, false);
         			this.world.setEntityState(this, (byte)3);
@@ -185,7 +149,6 @@ public class EntityGuanoProjectile extends EntityThrowable
         		tile.setOre(this.ore);
             	final IBlockState state = world.getBlockState(pos);
             	world.notifyBlockUpdate(pos, state, state, 3);
-        		System.out.println(this.ore);
         		System.out.println(tile.getOre());
     		}
     	}

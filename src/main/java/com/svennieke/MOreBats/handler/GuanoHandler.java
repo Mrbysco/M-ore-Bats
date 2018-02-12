@@ -17,7 +17,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -55,17 +54,6 @@ public class GuanoHandler
 			System.out.println(newStack);
 
 			event.getDrops().add(new EntityItem(entity.world, entity.posX, entity.posY, entity.posZ, newStack));
-		}
-	}
-	
-	@SubscribeEvent
-	public void onLivingUpdate(LivingUpdateEvent event) {
-		
-		Entity entity = event.getEntityLiving();
-		
-		if(entity instanceof EntityOreBat)
-		{
-			//System.out.println("IM ALIVE");
 		}
 	}
 	
