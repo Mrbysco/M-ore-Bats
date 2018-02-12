@@ -2,28 +2,39 @@ package com.svennieke.MOreBats.init;
 
 import com.svennieke.MOreBats.MOreBats;
 import com.svennieke.MOreBats.Reference;
-import com.svennieke.MOreBats.entity.EntityGuanoProjectile;
-import com.svennieke.MOreBats.entity.EntityOreBat;
+import com.svennieke.MOreBats.entities.entity.EntityGuanoProjectile;
+import com.svennieke.MOreBats.entities.entity.EntityOreBat;
+import com.svennieke.MOreBats.entities.tileentity.GuanoTileEntity;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class MOreEntities {
 
+	static int ID = 0;
+	
 	public static void register() {		
-		System.out.println("Registering Ore Bat");
-		EntityRegistry.registerModEntity(ORE_BAT_REGISTRY, EntityOreBat.class, ORE_BAT, 0, MOreBats.instance, 80, 3, true, 3421236, 3556687);
+		MOreBats.logger.debug("Registering Ore Bat");
+		registerEntity("ore_bat", EntityOreBat.class, "OreBat", 80, 3, true, 3421236, 3556687);
+		registerEntity("guano", EntityGuanoProjectile.class, "Guano", 80, 3, true);
 		
-		EntityRegistry.registerModEntity(GUANO_REGISTRY, EntityGuanoProjectile.class, GUANO, 1, MOreBats.instance, 80, 3, true);
+		registerTileEntity(GuanoTileEntity.class, "_tileentity");
 	}
 	
-	public static final String ORE_BAT = Reference.MOD_PREFIX + "OreBat";
-	public static final String GUANO = Reference.MOD_PREFIX + "Guano";
-		
-	public static final ResourceLocation ORE_BAT_REGISTRY = Name("ore_bat");
-	public static final ResourceLocation GUANO_REGISTRY = Name("guano");
-		
-	private static ResourceLocation Name(String s) {
-			return new ResourceLocation(Reference.MOD_ID, s);
+	public static void registerEntity(String registryName, Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, registryName), entityClass, Reference.MOD_PREFIX + entityName, ID, MOreBats.instance, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimary, eggSecondary);
+		ID++;
+	}
+	
+	public static void registerEntity(String registryName, Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, registryName), entityClass, Reference.MOD_PREFIX + entityName, ID, MOreBats.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
+		ID++;
+	}
+	
+	public static void registerTileEntity(Class<? extends TileEntity> tileentityClass, String tilename) {
+		GameRegistry.registerTileEntity(tileentityClass, Reference.MOD_ID + tilename);
 	}
 }

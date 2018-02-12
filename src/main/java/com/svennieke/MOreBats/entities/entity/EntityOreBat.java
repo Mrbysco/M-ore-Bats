@@ -1,4 +1,4 @@
-package com.svennieke.MOreBats.entity;
+package com.svennieke.MOreBats.entities.entity;
 
 import java.awt.Color;
 
@@ -24,7 +24,7 @@ public class EntityOreBat extends EntityBat{
 	public EntityOreBat(World worldIn) {
 		super(worldIn);
 	}
-	
+
 	@Override
 	protected void entityInit() {
 		super.entityInit();

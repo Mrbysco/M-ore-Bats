@@ -2,7 +2,7 @@ package com.svennieke.MOreBats.render.entity;
 
 import java.awt.Color;
 
-import com.svennieke.MOreBats.entity.EntityOreBat;
+import com.svennieke.MOreBats.entities.entity.EntityOreBat;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;

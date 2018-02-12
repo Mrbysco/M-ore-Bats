@@ -6,6 +6,9 @@ import java.util.Random;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.svennieke.MOreBats.config.MOreBatsConfigGen;
+import com.svennieke.MOreBats.init.MOreItems;
+
+import net.minecraft.item.Item;
 
 public class OreList {
 public static final Random rand = new Random();
@@ -49,5 +52,30 @@ public static final Random rand = new Random();
         if (size == 1) return list.get(0);
         int randomIndex = rand.nextInt(list.size());
         return list.get(randomIndex);
-}
+    }
+    
+    public static Item getItemFromOre(String ore)
+    {
+    	//basic oreItem
+    	Item oreItem = MOreItems.coal_chunk;
+    	
+    	if (ore.equals("oreGold"))
+    		oreItem = MOreItems.gold_chunk;
+    	if (ore.equals("oreIron"))
+    		oreItem = MOreItems.iron_chunk;
+    	if (ore.equals("oreLapis"))
+    		oreItem = MOreItems.lapis_chunk;
+    	if (ore.equals("oreDiamond"))
+    		oreItem = MOreItems.diamond_chunk;
+    	if (ore.equals("oreRedstone"))
+    		oreItem = MOreItems.redstone_chunk;
+    	if (ore.equals("oreEmerald"))
+    		oreItem = MOreItems.emerald_chunk;
+    	if (ore.equals("oreQuartz"))
+    		oreItem = MOreItems.quartz_chunk;
+    	if (ore.equals("oreCoal"))
+    		oreItem = MOreItems.coal_chunk;
+    	
+		return oreItem;
+    }
 }

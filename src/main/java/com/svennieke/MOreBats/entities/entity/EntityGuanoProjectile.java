@@ -1,8 +1,10 @@
-package com.svennieke.MOreBats.entity;
+package com.svennieke.MOreBats.entities.entity;
 
+import com.svennieke.MOreBats.entities.tileentity.GuanoTileEntity;
 import com.svennieke.MOreBats.init.MOreBlocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +12,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
@@ -21,16 +24,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityGuanoProjectile extends EntityThrowable
 {
 	private int density;
+	private String ore;
 	
 	public EntityGuanoProjectile(World worldIn)
     {
         super(worldIn);
     }
 
-    public EntityGuanoProjectile(World worldIn, EntityLivingBase throwerIn, int DENSITY)
+    public EntityGuanoProjectile(World worldIn, EntityLivingBase throwerIn, int densityIn, String oreName)
     {
         super(worldIn, throwerIn);
-        this.density = DENSITY;
+        this.density = densityIn;
+        this.ore = oreName;
     }
 	
     public EntityGuanoProjectile(World worldIn, double x, double y, double z)
@@ -79,10 +84,12 @@ public class EntityGuanoProjectile extends EntityThrowable
             		hitPlayer.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 12 * 20, 0, true, true));
             		hitPlayer.addPotionEffect(new PotionEffect(MobEffects.POISON, 10 * 20, 0, true, true));
             		dostuff(this.getPosition());
+        			setInfo(this.getPosition());
         		}
         		else
         		{
         			dostuff(this.getPosition());
+        			setInfo(this.getPosition());
         		}
         	}
         		
@@ -98,25 +105,37 @@ public class EntityGuanoProjectile extends EntityThrowable
         		Block block4 = world.getBlockState(pos4).getBlock();
         		Block block5 = world.getBlockState(pos5).getBlock();
 
-        		if(block == Blocks.AIR || block == Blocks.TALLGRASS && !(block == MOreBlocks.guano))
+        		boolean flag1 = (block == Blocks.AIR || block == Blocks.TALLGRASS);
+        		boolean flag2 = (block2 == Blocks.AIR || block2 == Blocks.TALLGRASS);
+        		boolean flag3 = (block3 == Blocks.AIR || block3 == Blocks.TALLGRASS);
+        		boolean flag4 = (block4 == Blocks.AIR || block4 == Blocks.TALLGRASS);
+        		boolean flag5 = (block5 == Blocks.AIR || block5 == Blocks.TALLGRASS);
+        		
+        		
+        		if(flag1 && !(block == MOreBlocks.guano))
         		{
         			dostuff(pos1);
+        			setInfo(pos1);
         		}
-        		else if(block2 == Blocks.AIR || block2 == Blocks.TALLGRASS && !(block2 == MOreBlocks.guano))
+        		else if(flag2 && !(block2 == MOreBlocks.guano))
         		{
         			dostuff(pos2);
+        			setInfo(pos2);
         		}
-        		else if(block3 == Blocks.AIR || block3 == Blocks.TALLGRASS && !(block3 == MOreBlocks.guano))
+        		else if(flag3 && !(block3 == MOreBlocks.guano))
         		{
         			dostuff(pos3);
+        			setInfo(pos3);
         		}
-        		else if(block4 == Blocks.AIR || block4 == Blocks.TALLGRASS && !(block4 == MOreBlocks.guano))
+        		else if(flag4 && !(block4 == MOreBlocks.guano))
         		{
         			dostuff(pos4);
+        			setInfo(pos4);
         		}
-        		else if(block5 == Blocks.AIR || block5 == Blocks.TALLGRASS && !(block5 == MOreBlocks.guano))
+        		else if(flag5 && !(block5 == MOreBlocks.guano))
         		{
         			dostuff(pos5);
+        			setInfo(pos5);
         		}
         		
         		else if(block == Blocks.LAVA || block2 == Blocks.LAVA | block3 == Blocks.LAVA | block4 == Blocks.LAVA | block5 == Blocks.LAVA )
@@ -135,23 +154,40 @@ public class EntityGuanoProjectile extends EntityThrowable
     }
     
     private void dostuff(BlockPos pos) {
-    	if (this.density == 1)
+    	switch(this.density)
     	{
-    		world.setBlockState(pos, MOreBlocks.guano.getDefaultState());
+	    	case 1:
+	    		world.setBlockState(pos, MOreBlocks.guano.getDefaultState());
+	    		break;
+	    	case 2:
+	    		world.setBlockState(pos, MOreBlocks.guano2.getDefaultState());
+	    		break;
+	    	case 3:
+	    		world.setBlockState(pos, MOreBlocks.guano3.getDefaultState());
+	    		break;
+	    	case 4:
+	    		world.setBlockState(pos, MOreBlocks.guano4.getDefaultState());
+	    		break;
     	}
-    	if (this.density == 2)
-    	{
-    		world.setBlockState(pos, MOreBlocks.guano2.getDefaultState());
-    	}
-    	if (this.density == 3)
-    	{
-    		world.setBlockState(pos, MOreBlocks.guano3.getDefaultState());
-    	}
-    	if (this.density == 4)
-    	{
-    		world.setBlockState(pos, MOreBlocks.guano4.getDefaultState());
-    	}
+    	
     	this.world.setEntityState(this, (byte)3);
         this.setDead();
+    }
+    
+    private void setInfo(BlockPos pos) {
+    	TileEntity te = world.getTileEntity(pos);
+    	if (te instanceof GuanoTileEntity)
+    	{
+    		GuanoTileEntity tile = (GuanoTileEntity)te;
+        	if (tile != null) 
+    		{	
+        		tile.setDensity(this.density);
+        		tile.setOre(this.ore);
+            	final IBlockState state = world.getBlockState(pos);
+            	world.notifyBlockUpdate(pos, state, state, 3);
+        		System.out.println(this.ore);
+        		System.out.println(tile.getOre());
+    		}
+    	}
     }
 }

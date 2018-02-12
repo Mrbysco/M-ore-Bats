@@ -4,11 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.svennieke.MOreBats.config.MOreBatsConfigGen;
-import com.svennieke.MOreBats.entity.EntityOreBat;
-import com.svennieke.MOreBats.init.MOreBlocks;
+import com.svennieke.MOreBats.entities.entity.EntityOreBat;
+import com.svennieke.MOreBats.handler.GuanoHandler;
 import com.svennieke.MOreBats.init.MOreCrafting;
 import com.svennieke.MOreBats.init.MOreEntities;
-import com.svennieke.MOreBats.init.MOreItems;
 import com.svennieke.MOreBats.init.MOreTab;
 import com.svennieke.MOreBats.proxy.CommonProxy;
 
@@ -48,27 +47,22 @@ public class MOreBats {
 		MinecraftForge.EVENT_BUS.register(new MOreBatsConfigGen());
 		
 		MOreEntities.register();
-		
-		MOreItems.init();
-		MOreItems.register();
-		
-		MOreBlocks.init();
-		MOreBlocks.register();
-		
-		MOreCrafting.init();
-		
 		proxy.Preinit();
 	}
 	
 	@EventHandler
     public void init(FMLInitializationEvent event)
 	{
+		logger.debug("Registering Ore Bat Spawn");
 		for (Biome biome : Biome.REGISTRY) {
 		    biome.getSpawnableList(EnumCreatureType.AMBIENT).add(new SpawnListEntry(EntityOreBat.class, 4, 1, 2));
 		}
-		System.out.println("Registered Ore Bat Spawn");
 		
+		logger.debug("Registering Event");
+		MinecraftForge.EVENT_BUS.register(new GuanoHandler());
 		proxy.Init();
+		
+		MOreCrafting.init();
     }
 	
 	@EventHandler

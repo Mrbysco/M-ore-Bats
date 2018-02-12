@@ -1,6 +1,6 @@
 package com.svennieke.MOreBats.render.projectile;
 
-import com.svennieke.MOreBats.entity.EntityGuanoProjectile;
+import com.svennieke.MOreBats.entities.entity.EntityGuanoProjectile;
 
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.Render;

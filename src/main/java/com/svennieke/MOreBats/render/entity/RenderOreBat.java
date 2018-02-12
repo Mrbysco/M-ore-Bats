@@ -1,6 +1,6 @@
 package com.svennieke.MOreBats.render.entity;
 
-import com.svennieke.MOreBats.entity.EntityOreBat;
+import com.svennieke.MOreBats.entities.entity.EntityOreBat;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderBat;

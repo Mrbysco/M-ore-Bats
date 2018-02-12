@@ -20,13 +20,37 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
+repositories {
+	maven {
+		// location of the maven that hosts JEI files
+		name = "Progwml6 maven"
+		url = "http://dvs1.progwml6.com/files/maven"
+	}
+	maven {
+		// location of a maven mirror for JEI files, as a fallback
+		name = "ModMaven"
+		url = "modmaven.k-4u.nl"
+	}
+	maven {
+		name "Jared"
+		url "http://maven.blamejared.com/"
+	}
+}
+
 minecraft {
-    version = "1.12.2-14.23.0.2529"
+    version = "1.12.2-14.23.2.2611"
     runDir = "run"
     mappings = "snapshot_20171003"
 }
 
-dependencies {}
+dependencies {
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.2.+"
+    deobfCompile "CraftTweaker2:CraftTweaker2-API:4.1.2.+"
+    deobfCompile "CraftTweaker2:ZenScript:4.1.2.+"
+	deobfCompile "mezz.jei:jei_1.12.2:4.8.5.+"
+	deobfCompile "mezz.jei:jei_1.12.2:4.8.5.+:api"
+	runtime "mezz.jei:jei_1.12.2:4.8.5.+"
+}
 
 processResources {
     // this will ensure that this task is redone when the versions change.

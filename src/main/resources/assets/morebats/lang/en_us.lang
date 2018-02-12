@@ -5,25 +5,25 @@ morebats.config.title=M'Ore Bats Config
 itemGroup.morebats=M'Ore Bats
 
 #blocks
-tile.guano_block.name=Tiny Pile Of Guano
-tile.guano_block2.name=Pile Of Guano
-tile.guano_block3.name=Big Pile Of Guano
-tile.guano_block4.name=Giant Pile Of Guano
+tile.morebats:guanoblock.name=Tiny Pile Of Guano
+tile.morebats:guanoblock2.name=Pile Of Guano
+tile.morebats:guanoblock3.name=Big Pile Of Guano
+tile.morebats:guanoblock4.name=Giant Pile Of Guano
 
 #items
-item.guano_projectile.name=Tiny Pile Of Guano
-item.guano_projectile2.name=Pile Of Guano
-item.guano_projectile3.name=Big Pile Of Guano
-item.guano_projectile4.name=Giant Pile Of Guano
+item.morebats:guanoprojectile.name=Tiny Pile Of Guano
+item.morebats:guanoprojectile2.name=Pile Of Guano
+item.morebats:guanoprojectile3.name=Big Pile Of Guano
+item.morebats:guanoprojectile4.name=Giant Pile Of Guano
 
-item.gold_chunk.name=Gold Chunk
-item.iron_chunk.name=Iron Chunk
-item.lapis_chunk.name=Lapis Chunk
-item.diamond_chunk.name=Diamond Chunk
-item.redstone_chunk.name=Redstone Chunk
-item.emerald_chunk.name=Emerald Chunk
-item.quartz_chunk.name=Quartz Chunk
-item.coal_chunk.name=Coal Chunk
+item.morebats:goldchunk.name=Gold Chunk
+item.morebats:ironchunk.name=Iron Chunk
+item.morebats:lapischunk.name=Lapis Chunk
+item.morebats:diamondchunk.name=Diamond Chunk
+item.morebats:redstonechunk.name=Redstone Chunk
+item.morebats:emeraldchunk.name=Emerald Chunk
+item.morebats:quartzchunk.name=Quartz Chunk
+item.morebats:coalchunk.name=Coal Chunk
 
 #entities
 entity.morebats:OreBat.name=Ore Bat

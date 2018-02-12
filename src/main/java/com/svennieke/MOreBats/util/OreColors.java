@@ -2,6 +2,8 @@ package com.svennieke.MOreBats.util;
 
 import java.awt.Color;
 
+import com.svennieke.MOreBats.MOreBats;
+
 public class OreColors {
 	
 	public static Color getColor(String name) {	
@@ -24,6 +26,7 @@ public class OreColors {
 		if(name.equals("oreMithril")){return createColor(11451355);}
 		else
 		{
+			MOreBats.logger.warn(name + " is not in the list of ores known by this mod");
 			return Color.MAGENTA;
 		}
 	}

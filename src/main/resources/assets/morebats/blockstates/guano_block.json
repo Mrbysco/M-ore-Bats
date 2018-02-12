@@ -1,6 +1,12 @@
 {
+    "forge_marker": 1,
+	"defaults": {
+		"model": "morebats:guano_block"
+    },
     "variants": {
-	"explode=true": { "model":"morebats:guano_block" },
-	"explode=false": { "model":"morebats:guano_block" }
-    }
+		"explode": {
+			"true": { },
+            "false": { }
+		}
+  }
 }
