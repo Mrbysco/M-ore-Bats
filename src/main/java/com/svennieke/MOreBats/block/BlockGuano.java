@@ -6,7 +6,6 @@ import com.svennieke.MOreBats.block.base.BlockBase;
 import com.svennieke.MOreBats.init.MOreItems;
 import com.svennieke.MOreBats.util.OreList;
 
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -60,7 +59,6 @@ public class BlockGuano extends BlockBase
 		{
 			case 0:
 				guanoStack = new ItemStack(MOreItems.guano_projectile);
-				System.out.println("HI");
 				break;
 			case 1:
 				guanoStack = new ItemStack(MOreItems.guano_projectile2);

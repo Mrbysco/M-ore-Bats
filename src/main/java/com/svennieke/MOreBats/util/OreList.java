@@ -1,46 +1,47 @@
 package com.svennieke.MOreBats.util;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
-import com.svennieke.MOreBats.block.BlockGuano;
 import com.svennieke.MOreBats.config.MOreBatsConfigGen;
 import com.svennieke.MOreBats.init.MOreBlocks;
 import com.svennieke.MOreBats.init.MOreItems;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
 public class OreList {
-public static final Random rand = new Random();
+	public static final Random rand = new Random();
 	
-	public static List<String> vanillaOres = ImmutableList.of(
-			"oreGold",
-			"oreIron",
-			"oreLapis",
-			"oreDiamond",
-			"oreRedstone",
-			"oreEmerald",
-			"oreQuartz",
-			"oreCoal");
-	
-	public static final List<String> ores = new ArrayList<String>(vanillaOres);
+	public static List<String> getOreList()
+	{
+		String[] vanillaOres = MOreBatsConfigGen.ores.vanillaOres;
+		String[] moddedOres = MOreBatsConfigGen.modded_ores.modOres;
+		String[] allOres = (String[])ArrayUtils.addAll(vanillaOres, moddedOres);
+		
+		List<String> oreList = new ArrayList<String>(Arrays.asList(allOres));
+		oreList.removeAll(Collections.singleton(""));
+		
+		return oreList;
+	}
 	
 	public static String getRandomOre()
 	{
-		if (MOreBatsConfigGen.modores.tinOre == true) {ores.add("oreTin");}
-		if (MOreBatsConfigGen.modores.copperOre == true) {ores.add("oreCopper");}
-		if (MOreBatsConfigGen.modores.silverOre == true) {ores.add("oreSilver");}
-		if (MOreBatsConfigGen.modores.leadOre == true) {ores.add("oreLead");}
-		if (MOreBatsConfigGen.modores.aluminumOre == true) {ores.add("oreAluminum");}
-		if (MOreBatsConfigGen.modores.nickelOre == true) {ores.add("oreNickel");}
-		if (MOreBatsConfigGen.modores.platinumOre == true) {ores.add("orePlatinum");}
-		if (MOreBatsConfigGen.modores.iridiumOre == true) {ores.add("oreIridium");}
-		if (MOreBatsConfigGen.modores.mithrilOre == true) {ores.add("oreMithril");}
-
-		String ore = getRandomFromList(ores);
-		return ore;
+		List<String> ores = new ArrayList<String>(getOreList());
+		
+		String randomOre = "";
+		if(!ores.isEmpty())
+		{
+			int idx = rand.nextInt(ores.size());
+			randomOre = (ores.get(idx));
+		}
+		return OreDict.OreExists(randomOre) ? randomOre : "";
 	}
 	
 	public static <T> T getRandomFromList(List<T> list) {
@@ -58,73 +59,53 @@ public static final Random rand = new Random();
     
     public static Item getItemFromOre(String ore)
     {
-    	//basic oreItem
-    	Item oreItem = MOreItems.coal_chunk;
-    	
-    	if (ore.contains("gold"))
-    		oreItem = MOreItems.gold_chunk;
-    	if (ore.contains("iron"))
-    		oreItem = MOreItems.iron_chunk;
-    	if (ore.contains("lapis"))
-    		oreItem = MOreItems.lapis_chunk;
-    	if (ore.contains("diamond"))
-    		oreItem = MOreItems.diamond_chunk;
-    	if (ore.contains("redstone"))
-    		oreItem = MOreItems.redstone_chunk;
-    	if (ore.contains("emerald"))
-    		oreItem = MOreItems.emerald_chunk;
-    	if (ore.contains("quartz"))
-    		oreItem = MOreItems.quartz_chunk;
-    	if (ore.contains("coal"))
-    		oreItem = MOreItems.coal_chunk;
+    	List<String> ores = new ArrayList<String>(getOreList());
+
+    	Item oreItem = MOreItems.ore_chunk[0];
+
+		for(int i = 0 ; i < ores.size(); i++)
+		{
+			oreItem = MOreItems.ore_chunk[i];
+		}
     	
 		return oreItem;
     }
     
-    public static BlockGuano getBlockFromName(String blockName)
+    public static Block getBlockFromName(String blockName)
     {
-    	BlockGuano guanoBlock = MOreBlocks.coal_guano;
+    	List<String> ores = new ArrayList<String>(getOreList());
     	
-    	if (blockName.contains("Gold"))
-    		guanoBlock = MOreBlocks.gold_guano;
-    	if (blockName.contains("Iron"))
-    		guanoBlock = MOreBlocks.iron_guano;
-    	if (blockName.contains("Lapis"))
-    		guanoBlock = MOreBlocks.lapis_guano;
-    	if (blockName.contains("Diamond"))
-    		guanoBlock = MOreBlocks.diamond_guano;
-    	if (blockName.contains("Redstone"))
-    		guanoBlock = MOreBlocks.redstone_guano;
-    	if (blockName.contains("Emerald"))
-    		guanoBlock = MOreBlocks.emerald_guano;
-    	if (blockName.contains("Quartz"))
-    		guanoBlock = MOreBlocks.quartz_guano;
-    	if (blockName.contains("Coal"))
-    		guanoBlock = MOreBlocks.coal_guano;
+    	Block guanoBlock = Blocks.SNOW;
+    	
+    	if(MOreBlocks.ore_guano.length != 0)
+    	guanoBlock = MOreBlocks.ore_guano[0];
+
+    	if(!ores.isEmpty())
+    	{
+    		for(int i = 0 ; i < ores.size(); i++)
+    		{
+    			guanoBlock = MOreBlocks.ore_guano[i];
+    		}
+    	}
     	
     	return guanoBlock;
     }
     
     public static String convertBlockName(String blockName)
     {
+    	List<String> ores = new ArrayList<String>(getOreList());
     	String oreName = "oreCoal";
-    	
-    	if (blockName.contains("gold"))
-    		oreName = "oreGold";
-    	if (blockName.contains("iron"))
-    		oreName = "oreIron";
-    	if (blockName.contains("lapis"))
-    		oreName = "oreLapis";
-    	if (blockName.contains("diamond"))
-    		oreName = "oreDiamond";
-    	if (blockName.contains("redstone"))
-    		oreName = "oreRedstone";
-    	if (blockName.contains("emerald"))
-    		oreName = "oreEmerald";
-    	if (blockName.contains("quartz"))
-    		oreName = "oreQuartz";
-    	if (blockName.contains("coal"))
-    		oreName = "oreCoal";
+    	if(!ores.isEmpty())
+    	{
+	    	for(int i = 0 ; i < ores.size(); i++)
+	    	{
+	    		String ore = ores.get(i);
+	    		if(blockName.contains(ore.replace("ore", "").toLowerCase()))
+	    		{
+	    			oreName = ores.get(i);
+	    		}
+	    	}
+    	}
     	
     	return oreName;
     }

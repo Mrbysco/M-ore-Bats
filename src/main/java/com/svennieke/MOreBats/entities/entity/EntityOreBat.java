@@ -76,15 +76,23 @@ public class EntityOreBat extends EntityBat{
 		if (getOre() == null || getOre().isEmpty())
 		{
 			String randomOreName = OreList.getRandomOre();
+			System.out.println(randomOreName);
 
-			setOre(randomOreName);
+			if(randomOreName.isEmpty())
+			{
+				setOre("oreCoal");
+			}
+			else
+			{
+				setOre(randomOreName);
+			}
 		}
 	}
 	
 	public String getOre()
 	{
 		if (this.dataManager.get(ORE_NAME) == null || this.dataManager.get(ORE_NAME).isEmpty())
-			return null;
+			return "oreCoal";
 		
 		return this.dataManager.get(ORE_NAME);
 	}

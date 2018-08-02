@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "1.0"
 group = "com.svennieke.MOreBats" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "M'ore Bats"
+archivesBaseName = "M-ore_Bats"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -35,21 +35,21 @@ repositories {
 		name "Jared"
 		url "http://maven.blamejared.com/"
 	}
+	maven {
+		url "http://tehnut.info/maven"
+	}
 }
 
 minecraft {
-    version = "1.12.2-14.23.2.2611"
+    version = "1.12.2-14.23.4.2705"
     runDir = "run"
     mappings = "snapshot_20171003"
 }
 
 dependencies {
-    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.2.+"
-    deobfCompile "CraftTweaker2:CraftTweaker2-API:4.1.2.+"
-    deobfCompile "CraftTweaker2:ZenScript:4.1.2.+"
-	deobfCompile "mezz.jei:jei_1.12.2:4.8.5.+"
-	deobfCompile "mezz.jei:jei_1.12.2:4.8.5.+:api"
-	runtime "mezz.jei:jei_1.12.2:4.8.5.+"
+	deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.9.+"
+	deobfCompile "mezz.jei:jei_1.12.2:4.11.0.+"
+	deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
 }
 
 processResources {

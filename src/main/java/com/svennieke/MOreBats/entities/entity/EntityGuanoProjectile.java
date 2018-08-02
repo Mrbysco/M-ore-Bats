@@ -87,8 +87,6 @@ public class EntityGuanoProjectile extends EntityThrowable
         		
         	if(result.typeOfHit != null && result.typeOfHit == RayTraceResult.Type.BLOCK)
         	{
-        		
-        		//BlockPos position = new BlockPos(this.posX, this.posY, this.posZ);
         		BlockPos position = this.getPosition();
         		Block block = world.getBlockState(pos).getBlock();
         		boolean flag1 = (block == Blocks.AIR || block == Blocks.TALLGRASS);
@@ -113,25 +111,30 @@ public class EntityGuanoProjectile extends EntityThrowable
     }
     
     private void dostuff(BlockPos pos) {
-    	BlockGuano guano = OreList.getBlockFromName(this.oreName);
+    	BlockGuano guano;
+	    if(OreList.getBlockFromName(this.oreName) != Blocks.SNOW)
+	    {
+	    	guano = (BlockGuano)OreList.getBlockFromName(this.oreName);
+	    	
+	    	switch(this.density)
+	    	{
+		    	case 0:
+		    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(0)));
+		    		break;
+		    	case 1:
+		    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(1)));
+		    		break;
+		    	case 2:
+		    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(2)));
+		    		break;
+		    	case 3:
+		    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(3)));
+		    		break;
+	    	}
+	    	
+	    	this.world.setEntityState(this, (byte)3);
+	    }
     	
-    	switch(this.density)
-    	{
-	    	case 0:
-	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(0)));
-	    		break;
-	    	case 1:
-	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(1)));
-	    		break;
-	    	case 2:
-	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(2)));
-	    		break;
-	    	case 3:
-	    		world.setBlockState(pos, guano.getDefaultState().withProperty(guano.DENSITY, Integer.valueOf(3)));
-	    		break;
-    	}
-    	
-    	this.world.setEntityState(this, (byte)3);
         this.setDead();
     }
 }

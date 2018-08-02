@@ -32,6 +32,6 @@ public class MOreEntities {
 	}
 	
 	public static void registerTileEntity(Class<? extends TileEntity> tileentityClass, String tilename) {
-		GameRegistry.registerTileEntity(tileentityClass, Reference.MOD_ID + tilename);
+		GameRegistry.registerTileEntity(tileentityClass, new ResourceLocation(Reference.MOD_ID, tilename));
 	}
 }

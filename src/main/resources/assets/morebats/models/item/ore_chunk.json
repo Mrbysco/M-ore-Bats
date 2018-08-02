@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "morebats:items/snowball",
+		"layer1": "morebats:items/snowballover"
+    }
+}

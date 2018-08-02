@@ -14,8 +14,6 @@
 			"true": { },
             "false": { }
 		},
-		"inventory": [{
-			"model": "morebats:guano_block"
-		}]
+		"inventory": [{}]
   }
 }

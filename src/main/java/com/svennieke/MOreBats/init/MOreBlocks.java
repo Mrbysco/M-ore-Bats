@@ -1,9 +1,11 @@
 package com.svennieke.MOreBats.init;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.svennieke.MOreBats.block.BlockGuano;
-import com.svennieke.MOreBats.config.MOreBatsConfigGen;
+import com.svennieke.MOreBats.util.OreDict;
+import com.svennieke.MOreBats.util.OreList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -14,7 +16,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @EventBusSubscriber
 public class MOreBlocks {
-	public static BlockGuano gold_guano, iron_guano, lapis_guano, diamond_guano, redstone_guano, emerald_guano, quartz_guano, coal_guano;
+	public static BlockGuano[] ore_guano;
 	
 	public static ArrayList<Block> BLOCKS = new ArrayList<>();
 	
@@ -23,49 +25,36 @@ public class MOreBlocks {
     {
 		IForgeRegistry<Block> registry = event.getRegistry();
 
-		//Registering ore guano if ores exist
-		if(MOreBatsConfigGen.ores.goldOre)
-		{
-			gold_guano = registerBlock(new BlockGuano("gold_guano"));
-		}
-		
-		if(MOreBatsConfigGen.ores.ironOre)
-		{
-			iron_guano = registerBlock(new BlockGuano("iron_guano"));
-		}
-		
-		if(MOreBatsConfigGen.ores.lapisOre)
-		{
-			lapis_guano = registerBlock(new BlockGuano("lapis_guano"));
-		}
-		
-		if(MOreBatsConfigGen.ores.diamondOre)
-		{
-			diamond_guano = registerBlock(new BlockGuano("diamond_guano"));
-		}
-		
-		if(MOreBatsConfigGen.ores.redstoneOre)
-		{
-			redstone_guano = registerBlock(new BlockGuano("redstone_guano"));
-		}
-		
-		if(MOreBatsConfigGen.ores.emeraldOre)
-		{
-			emerald_guano = registerBlock(new BlockGuano("emerald_guano"));
-		}
-		
-		if(MOreBatsConfigGen.ores.quartzOre)
-		{
-			quartz_guano = registerBlock(new BlockGuano("quartz_guano"));
-		}
-		
-		if(MOreBatsConfigGen.ores.coalOre)
-		{
-			coal_guano = registerBlock(new BlockGuano("coal_guano"));
-		}
+    	List<String> ores = new ArrayList<String>(OreList.getOreList());    	
+    	if(!ores.isEmpty())
+    	{
+    		ore_guano = registerGuano(ores);
+    	}
 		
 		registry.registerAll(BLOCKS.toArray(new Block[0]));
     }
+	
+	public static <T extends Block> BlockGuano[] registerGuano(List<String> ores)
+	{
+	    BlockGuano[] allBlocks = new BlockGuano[ores.size()];
+
+	    for(int i = 0 ; i < ores.size(); i++)
+		{
+	    	String oreName = ores.get(i);
+			String[] splitOre = oreName.split(",");
+			
+			try {
+				if(splitOre[0] != null && OreDict.OreExists(splitOre[0]))
+				{
+					allBlocks[i] = registerBlock(new BlockGuano(splitOre[0].replace("ore","").toLowerCase() + "_guano"));
+				}
+	    	} catch (IllegalArgumentException | SecurityException e) {
+	    		e.printStackTrace();
+	        }
+		}
+	   
+	    return allBlocks;
+	}
 	
 	public static <T extends Block> T registerBlock(T block)
     {
